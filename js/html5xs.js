@@ -312,7 +312,7 @@ function Html5XPlayer() {
                     }
                 });
 
-                event.target.mode = "hidden";
+                track.mode = "hidden";
 
             } else {
                 track.mode = "disabled";
