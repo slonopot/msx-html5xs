@@ -306,13 +306,13 @@ function Html5XPlayer() {
                     // In HLS streams the cues are loaded gradually, new ones won't have any handlers if blocked
 
                     for (var cue of event.target.cues) {
-
-                        cue.addEventListener("enter", cueEnter);
-                        cue.addEventListener("exit", cueExit);
+                        if (cue.onenter) continue
+                        cue.onenter = cueEnter;
+                        cue.onexit = cueExit;
                     }
-
-                    event.target.mode = "hidden";
                 });
+
+                event.target.mode = "hidden";
 
             } else {
                 track.mode = "disabled";
