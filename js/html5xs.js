@@ -302,7 +302,9 @@ function Html5XPlayer() {
 
                 track.addEventListener("cuechange", (event) => {
                     if (event.target.mode == "hidden") return;
-                    for (var cue of event.target.track.cues) {
+                    if (event.target.cues.length == 0) return;
+
+                    for (var cue of event.target.cues) {
 
                         cue.addEventListener("enter", cueEnter);
                         cue.addEventListener("exit", cueExit);
