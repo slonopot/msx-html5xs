@@ -196,7 +196,7 @@ function Html5XPlayer() {
         return track != null && track.enabled === true;
     };
     var isSubtitleTrackSelected = function(track) {
-        return track != null && track.mode === "showing";
+        return track != null && (track.mode === "showing" || track.mode === "hidden");
     };
     var createIndexTrack = function(index, track) {
         if (index >= 0 && track != null) {
@@ -298,13 +298,14 @@ function Html5XPlayer() {
             if (index == trackIndex) {
                 selectedTrack = track;
 
+                track.mode = "showing"; // actually loads the file
+
                 for (var cue of track.cues) {
 
                     cue.addEventListener("enter", cueEnter);
                     cue.addEventListener("exit", cueExit);
                 }
 
-                //track.mode = "showing";
                 track.mode = "hidden";
 
             } else {
