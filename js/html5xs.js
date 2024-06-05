@@ -301,14 +301,14 @@ function Html5XPlayer() {
                 track.mode = "showing";
 
                 track.addEventListener("cuechange", (event) => {
-                    if (event.target.track.mode == "hidden") return;
+                    if (event.target.mode == "hidden") return;
                     for (var cue of event.target.track.cues) {
 
                         cue.addEventListener("enter", cueEnter);
                         cue.addEventListener("exit", cueExit);
                     }
 
-                    event.target.track.mode = "hidden";
+                    event.target.mode = "hidden";
                 });
 
             } else {
@@ -742,16 +742,11 @@ function Html5XPlayer() {
         return false;
     };
 
-    var videoLoaded = function(e) {
-        debugger
-    }
-
     var setupVideoWithUrl = function(url) {
         //Note: URL does not need to be an HTTP/HTTPS URL (it can be any URL)
         if (TVXTools.isFullStr(url)) {
             TVXVideoPlugin.requestData("video:info", function(data) {
                 setupVideoInfo(data, function() {
-                    player.addEventListener('loadedmetadata', videoLoaded);
                     player.src = url;
                     player.load();
                 });
