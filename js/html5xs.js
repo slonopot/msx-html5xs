@@ -298,15 +298,18 @@ function Html5XPlayer() {
             if (index == trackIndex) {
                 selectedTrack = track;
 
-                track.mode = "showing"; // actually loads the file
+                track.mode = "showing";
 
-                for (var cue of track.cues) {
+                track.addEventListener("cuechange", (event) => {
+                    if (event.target.track.mode == "hidden") return;
+                    for (var cue of event.target.track.cues) {
 
-                    cue.addEventListener("enter", cueEnter);
-                    cue.addEventListener("exit", cueExit);
-                }
+                        cue.addEventListener("enter", cueEnter);
+                        cue.addEventListener("exit", cueExit);
+                    }
 
-                track.mode = "hidden";
+                    event.target.track.mode = "hidden";
+                });
 
             } else {
                 track.mode = "disabled";
@@ -739,11 +742,16 @@ function Html5XPlayer() {
         return false;
     };
 
+    var videoLoaded = function(e) {
+        debugger
+    }
+
     var setupVideoWithUrl = function(url) {
         //Note: URL does not need to be an HTTP/HTTPS URL (it can be any URL)
         if (TVXTools.isFullStr(url)) {
             TVXVideoPlugin.requestData("video:info", function(data) {
                 setupVideoInfo(data, function() {
+                    player.addEventListener('loadedmetadata', videoLoaded);
                     player.src = url;
                     player.load();
                 });
