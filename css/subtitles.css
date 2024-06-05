@@ -1,0 +1,57 @@
+#overlay {
+    display: grid;
+    justify-items: center;
+    align-items: end;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%
+}
+
+#subtitles {
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#player {
+    z-index: -1;
+}
+
+.hidden {
+    display: none;
+}
+
+.m-1 {margin-bottom: 0.5%;}
+.m-2 {margin-bottom: 1.0%;}
+.m-3 {margin-bottom: 1.5%;}
+.m-4 {margin-bottom: 2.0%;}
+.m-5 {margin-bottom: 2.5%;}
+.m-6 {margin-bottom: 3.0%;}
+.m-7 {margin-bottom: 3.5%;}
+.m-8 {margin-bottom: 4.0%;}
+.m-9 {margin-bottom: 4.5%;}
+.m-10 {margin-bottom: 5%;}
+
+.b-1 {background: rgba(0, 0, 0, .1)}
+.b-2 {background: rgba(0, 0, 0, .2)}
+.b-3 {background: rgba(0, 0, 0, .3)}
+.b-4 {background: rgba(0, 0, 0, .4)}
+.b-5 {background: rgba(0, 0, 0, .5)}
+.b-6 {background: rgba(0, 0, 0, .6)}
+.b-7 {background: rgba(0, 0, 0, .7)}
+.b-8 {background: rgba(0, 0, 0, .8)}
+.b-9 {background: rgba(0, 0, 0, .9)}
+.b-10 {background: rgba(0, 0, 0, 1)}
+
+.f-1 {font-size: 1.0rem}
+.f-2 {font-size: 1.2rem}
+.f-3 {font-size: 1.4rem}
+.f-4 {font-size: 1.6rem}
+.f-5 {font-size: 1.8rem}
+.f-6 {font-size: 2.0rem}
+.f-7 {font-size: 2.2rem}
+.f-8 {font-size: 2.4rem}
+.f-9 {font-size: 2.6rem}
+.f-10 {font-size: 2.6rem}
