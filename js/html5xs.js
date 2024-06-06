@@ -300,11 +300,13 @@ function Html5XPlayer() {
 
                 track.mode = "showing";
 
-                track.addEventListener("cuechange", (event) => {
-                    //if (event.target.mode == "hidden") return;
-                    //if (event.target.cues.length == 0) return;
-                    // In HLS streams the cues are loaded gradually, new ones won't have any handlers if blocked
+                for (var cue of track.cues) {
+                    if (cue.onenter) continue
+                    cue.onenter = cueEnter;
+                    cue.onexit = cueExit;
+                }
 
+                track.addEventListener("cuechange", (event) => {
                     for (var cue of event.target.cues) {
                         if (cue.onenter) continue
                         cue.onenter = cueEnter;
