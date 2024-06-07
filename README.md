@@ -3,7 +3,7 @@ Media Station X HTML5X player with styled subtitles.
 
 That's a mod of the original HTML5X player that allows to replace subtitles with a custom element that accepts generic styles. The plugin allows to change margin, background, font and size of the subtitles.
 
-This plugin was tested with a generic MP4 file with supplied VTT subtitles. It can play HLS in Safari and on an Xbox.
+This plugin was tested with a generic MP4 file with supplied VTT subtitles. It can play HLS in Safari (works) and on an Xbox (poor performance).
 
 # Usage
 
@@ -48,6 +48,7 @@ When this plugin was being tested on localhost, the subtitles were loading strai
 
 The initial idea was to use this one with HLS streams (little did I know), and HLS stream player will load subtitles gradually which won't allow to add cue events once, this is now done every `oncuechange` which may be affecting performance.
 
+On Xbox (UWP build) with HLS streams `oncuechange` will always have target with 0 or 1 cues, the one that was just loaded. In Safari, however, new cues will be appended to the end and this will allow the plugin to assign event and show items properly.
 
 # Shoutouts
 
