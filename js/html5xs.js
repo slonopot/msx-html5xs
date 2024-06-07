@@ -298,13 +298,21 @@ function Html5XPlayer() {
             if (index == trackIndex) {
                 selectedTrack = track;
 
-                track.mode = "showing"; // actually loads the file
+                track.mode = "showing";
 
                 for (var cue of track.cues) {
-
-                    cue.addEventListener("enter", cueEnter);
-                    cue.addEventListener("exit", cueExit);
+                    if (cue.onenter) continue
+                    cue.onenter = cueEnter;
+                    cue.onexit = cueExit;
                 }
+
+                track.addEventListener("cuechange", (event) => {
+                    for (var cue of event.target.cues) {
+                        if (cue.onenter) continue
+                        cue.onenter = cueEnter;
+                        cue.onexit = cueExit;
+                    }
+                });
 
                 track.mode = "hidden";
 
